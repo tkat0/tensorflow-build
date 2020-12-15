@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  android:
+    build:
+      context: .
+      dockerfile: ./tensorflow/tensorflow/tools/dockerfiles/dockerfiles/tflite-android.Dockerfile
+    command: bash
+    volumes:
+      - ./:/work:cached
+    security_opt:
+      - seccomp=unconfined
+    working_dir: /work
+    tty: true
+  linux:
+    # build:
+    #   context: .
+    #   dockerfile: ./tensorflow/tensorflow/tools/dockerfiles/dockerfiles/devel-cpu.Dockerfile
+    image: tensorflow/tensorflow:devel
+    command: bash
+    volumes:
+      - ./:/work:cached
+    security_opt:
+      - seccomp=unconfined
+    working_dir: /work
+    tty: true
